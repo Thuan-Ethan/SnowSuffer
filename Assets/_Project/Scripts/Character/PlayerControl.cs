@@ -7,10 +7,15 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float baseSpeed = 15f;
     [SerializeField] float boostSpeed = 20f;
 
-    InputAction moveAction;
-    Rigidbody2D myRigidbody2D;
-    Vector2 moveVector;
-    SurfaceEffector2D surfaceEffector2D;
+    private InputAction moveAction;
+    private Rigidbody2D myRigidbody2D;
+    private Vector2 moveVector;
+    private SurfaceEffector2D surfaceEffector2D;
+
+    public bool canControlPlayer = true;
+    private float previousRotation;
+    private float totalRotation;
+    private int flipCount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,22 +31,41 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         moveVector = moveAction.ReadValue<Vector2>();
-        PlayerRotation();
-        Boost();
+        if (canControlPlayer)
+        {
+            PlayerRotation();
+            Boost();
+            calculateFlips();
+        }
     }
-
-
-
 
     void PlayerRotation()
     {
         // Torque control based on horizontal input
         myRigidbody2D.AddTorque(-moveVector.x * torqueAmount);
     }
-
     void Boost()
     {
         // Optimized version using ternary operator
         surfaceEffector2D.speed = (moveVector.y > 0) ? boostSpeed : baseSpeed;
+    }
+    void calculateFlips()
+    {
+        // Calculate the number of flips based on the player's rotation
+        float currentRotation = transform.eulerAngles.z;
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        if (totalRotation >= 340f || totalRotation <= -340f)
+        {
+            flipCount++;
+            totalRotation = 0f; // Reset total rotation after a flip
+            print("Flips: " + flipCount);
+        }
+        previousRotation = currentRotation;
+        //print(totalRotation);
+    }
+    public void disableControl()
+    {
+        canControlPlayer = false;
+        surfaceEffector2D.speed = 0f; // Stop the player from moving when control is disabled
     }
 }

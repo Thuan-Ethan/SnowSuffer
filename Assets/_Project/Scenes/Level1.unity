@@ -7582,7 +7582,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 15
-  m_GravityScale: 1.3
+  m_GravityScale: 1.7
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -7606,9 +7606,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d19055e0ef14754798d76303354f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  torqueAmount: 10
+  torqueAmount: 15
   baseSpeed: 15
   boostSpeed: 25
+  canControlPlayer: 1
 --- !u!114 &1253594607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7621,7 +7622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260d492795c94ab4fa53bab148fdeeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrashDetection
-  restartDelay: 0.5
+  restartDelay: 1
   crashPartical: {fileID: 753594656}
 --- !u!114 &1253594608
 MonoBehaviour:
@@ -9008,9 +9009,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 3
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve: []
@@ -9025,8 +9026,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 3
-      minMaxState: 0
-      scalar: 5
+      minMaxState: 3
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9375,8 +9376,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.03219223
-          value: 0.3476925
+          time: 0.016094208
+          value: 0.47076988
           inSlope: 0
           outSlope: 0
           tangentMode: 0

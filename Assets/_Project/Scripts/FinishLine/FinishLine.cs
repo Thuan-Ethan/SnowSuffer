@@ -18,7 +18,7 @@ public class FinishLine : MonoBehaviour
         {
             finishPartical.Play();
             Invoke("RestartLevel", restartDelay);
-            Debug.Log(collision.gameObject.name + " has reached the finish line!");
+            //Debug.Log(collision.gameObject.name + " has reached the finish line!");
         }
     }
 
