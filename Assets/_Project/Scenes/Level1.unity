@@ -7580,7 +7580,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 15
-  m_GravityScale: 1
+  m_GravityScale: 1.3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -7604,7 +7604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d19055e0ef14754798d76303354f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  torqueAmount: 10
+  torqueAmount: 15
 --- !u!114 &1253594607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10175,7 +10175,7 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 15
+  m_Speed: 20
   m_SpeedVariation: 0
   m_ForceScale: 1
   m_UseContactForce: 0
