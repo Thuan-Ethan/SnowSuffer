@@ -102,4 +102,17 @@ public class PlayerControl : MonoBehaviour
             // Start a coroutine to reset the torque after the duration of the powerup
         }
     }
+
+    public void deactivePowerup(PowerupSO powerup)
+    {
+        if (powerup.getPowerupType() == "Speed")
+        {
+            baseSpeed -= powerup.getValueChange();
+            boostSpeed -= powerup.getValueChange();
+        }
+        else if (powerup.getPowerupType() == "Torque")
+        {
+            torqueAmount -= powerup.getValueChange();
+        }
+    }
 }

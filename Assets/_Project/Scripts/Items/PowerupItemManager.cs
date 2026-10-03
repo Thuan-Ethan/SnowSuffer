@@ -26,10 +26,12 @@ public class PowerupItemManager : MonoBehaviour
             {
                 timeLeft -= Time.deltaTime;
                 Debug.Log("Time left: " + timeLeft);
-            }
-           else
-            {
-                Debug.Log("Time's up");
+                
+                if(timeLeft <= 0)
+                {
+                    Debug.Log("Time's up! Powerup effect has ended.");
+                    player.deactivePowerup(powerup);
+                }
             }
         }
     }
@@ -42,6 +44,7 @@ public class PowerupItemManager : MonoBehaviour
             // Active the powerup effect
             player.activatePowerup(powerup);
             spriteRenderer.enabled = false; // hide the powerup item after collection
+            timeLeft = powerup.getDuration(); // set the countdown timer to the powerup duration
         }
     }
 }
