@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float torqueAmount = 1f;
     [SerializeField] float baseSpeed = 15f;
     [SerializeField] float boostSpeed = 20f;
+    [SerializeField] ParticleSystem buffParticals;
 
     private InputAction moveAction;
     private Rigidbody2D myRigidbody2D;
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     private float previousRotation;
     private float totalRotation;
     private int flipCount = 0;
+    private int activePowerupCount = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,25 +88,28 @@ public class PlayerControl : MonoBehaviour
 
     public void activatePowerup(PowerupSO powerup)
     {
+        buffParticals.Play();
+        activePowerupCount += 1;
         // Activate the powerup effect based on the type of powerup
         if (powerup.getPowerupType() == "Speed")
         {
             baseSpeed += powerup.getValueChange();
             boostSpeed += powerup.getValueChange();
-            // Start a coroutine to reset the speed after the duration of the powerup
-
-            // Destroy the powerup object after activation
-
         }
         else if (powerup.getPowerupType() == "Torque")
         {
             torqueAmount += powerup.getValueChange();
-            // Start a coroutine to reset the torque after the duration of the powerup
         }
     }
 
     public void deactivePowerup(PowerupSO powerup)
     {
+        activePowerupCount -= 1;
+        if (activePowerupCount <= 0)
+        {
+            buffParticals.Stop();
+        }
+
         if (powerup.getPowerupType() == "Speed")
         {
             baseSpeed -= powerup.getValueChange();
