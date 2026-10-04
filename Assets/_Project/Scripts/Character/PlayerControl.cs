@@ -7,13 +7,14 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float baseSpeed = 15f;
     [SerializeField] float boostSpeed = 20f;
     [SerializeField] ParticleSystem buffParticals;
+    [SerializeField] ScoreManager scoreManager;
+
 
     private InputAction moveAction;
     private Rigidbody2D myRigidbody2D;
     private Vector2 moveVector;
     private SurfaceEffector2D surfaceEffector2D;
 
-    ScoreManager scoreManager;
 
     public bool canControlPlayer = true;
     private float previousRotation;
@@ -30,8 +31,6 @@ public class PlayerControl : MonoBehaviour
         //surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
         // New method to find the SurfaceEffector2D component in the scene
         surfaceEffector2D = FindAnyObjectByType<SurfaceEffector2D>();
-        scoreManager = FindAnyObjectByType<ScoreManager>();
-
     }
 
     void Update()
